@@ -169,7 +169,7 @@ declare namespace KioskBoard {
 
     /**
      * @property {boolean} - Optional, The keyboard will be fixed and will not be removed when clicked outside
-     * @defaultValue `false`
+     * @defaultValue `true`
      */
     autoCloseOnOutsideClick?: boolean;
   }
