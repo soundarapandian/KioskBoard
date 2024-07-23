@@ -68,6 +68,7 @@
     keysEnterText: 'Enter',
     keysEnterCallback: undefined,
     keysEnterCanClose: true,
+    autoCloseOnOutsideClick: false,
   };
   var kioskBoardCachedKeys;
   var kioskBoardNewOptions;
@@ -840,36 +841,38 @@
             keysClickListeners(theInput);
 
             // keyboard click outside listener: begin
-            var docClickListener = function (e) {
-              var docClickTimeout = setTimeout(function () {
-                // check event target to remove keyboard: begin
-                var keyboardElm = window.document.getElementById(kioskBoardVirtualKeyboardId);
-                if (
-                  keyboardElm
-                  && e.target !== theInput
-                  && !kioskBoardEventTargetIsElementOrChilds(e, keyboardElm)
-                  && !e.target.classList.contains('kioskboard-body-padding')
-                ) {
-                  removeKeyboard();
-                  window.document.removeEventListener('click', docClickListener);
-                }
-                // check event target to remove keyboard: end
+            if (!opt.autoCloseOnOutsideClick) {
+              var docClickListener = function (e) {
+                var docClickTimeout = setTimeout(function () {
+                  // check event target to remove keyboard: begin
+                  var keyboardElm = window.document.getElementById(kioskBoardVirtualKeyboardId);
+                  if (
+                    keyboardElm
+                    && e.target !== theInput
+                    && !kioskBoardEventTargetIsElementOrChilds(e, keyboardElm)
+                    && !e.target.classList.contains('kioskboard-body-padding')
+                  ) {
+                    removeKeyboard();
+                    window.document.removeEventListener('click', docClickListener);
+                  }
+                  // check event target to remove keyboard: end
 
-                // toggle inputs: begin
-                if (allInputs.indexOf(theInput) > -1) {
-                  var toggleTimeout = setTimeout(function () {
-                    e.target.blur();
-                    e.target.focus();
-                    clearTimeout(toggleTimeout);
-                  }, cssAnimationsDuration);
-                }
-                // toggle inputs: end
+                  // toggle inputs: begin
+                  if (allInputs.indexOf(theInput) > -1) {
+                    var toggleTimeout = setTimeout(function () {
+                      e.target.blur();
+                      e.target.focus();
+                      clearTimeout(toggleTimeout);
+                    }, cssAnimationsDuration);
+                  }
+                  // toggle inputs: end
 
-                // clear doc click delay
-                clearTimeout(docClickTimeout);
-              }, cssAnimationsDuration);
-            };
-            window.document.addEventListener('click', docClickListener); // add document click listener
+                  // clear doc click delay
+                  clearTimeout(docClickTimeout);
+                }, cssAnimationsDuration);
+              };
+              window.document.addEventListener('click', docClickListener); // add document click listener
+            }
             // keyboard click outside listener: end
           }
           // append keyboard: end

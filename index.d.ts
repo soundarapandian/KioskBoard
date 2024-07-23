@@ -165,7 +165,12 @@ declare namespace KioskBoard {
      * @property {boolean} - Optional, The Enter key can close and remove the keyboard. Prevented when `false`
      * @defaultValue `true`
      */
-    keysEnterCanClose?: boolean;
+    autoCloseOnOutsideClick?: boolean;
+
+    /**
+     * @property {boolean} - Optional, The keyboard will be fixed and will not be removed when clicked outside
+     * @defaultValue `false`
+     */
   }
 
   /**
