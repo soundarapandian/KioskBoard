@@ -842,7 +842,7 @@
             keysClickListeners(theInput);
 
             // keyboard click outside listener: begin
-            if (!opt.autoCloseOnOutsideClick) {
+            if (opt.autoCloseOnOutsideClick) {
               var docClickListener = function (e) {
                 var docClickTimeout = setTimeout(function () {
                   // check event target to remove keyboard: begin
