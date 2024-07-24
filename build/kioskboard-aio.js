@@ -70,6 +70,7 @@
     keysEnterCallback: undefined,
     keysEnterCanClose: true,
     autoCloseOnOutsideClick: true,
+    customTheme: undefined,
   };
   var kioskBoardCachedKeys;
   var kioskBoardNewOptions;
@@ -543,6 +544,9 @@
           var kioskBoardVirtualKeyboard = window.document.createElement('div');
           kioskBoardVirtualKeyboard.id = kioskBoardVirtualKeyboardId;
           kioskBoardVirtualKeyboard.classList.add('kioskboard-theme-' + theTheme);
+          if (opt.customTheme !== undefined) {
+            kioskBoardVirtualKeyboard.classList.add(opt.customTheme);
+          }
           kioskBoardVirtualKeyboard.classList.add('kioskboard-placement-' + keyboardPlacement);
           kioskBoardVirtualKeyboard.classList.add(cssAnimationsClass);
           kioskBoardVirtualKeyboard.classList.add(cssAnimationsStyle);
