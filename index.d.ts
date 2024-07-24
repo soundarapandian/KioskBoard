@@ -177,7 +177,7 @@ declare namespace KioskBoard {
      * @property {string} - Optional, The custom theme class name to add the to root keyboard node with ID 'KioskBoard-VirtualKeyboard'
      * @defaultValue `undefined`
      */
-    customTheme?: boolean;
+    customTheme?: string;
   }
 
   /**
